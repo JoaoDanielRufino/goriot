@@ -102,12 +102,11 @@ func (c *HttpClient) handleErrorStatusCode(res *http.Response) error {
 
 	defer res.Body.Close()
 
-	err := json.NewDecoder(res.Body).Decode(&body)
-	if err != nil {
-		return fmt.Errorf("Error: %s", res.Status)
-	}
+	d := json.NewDecoder(res.Body)
+	d.DisallowUnknownFields()
 
-	if body.Status.Message == "" {
+	err := d.Decode(&body)
+	if err != nil {
 		return fmt.Errorf("Error: %s", res.Status)
 	}
 
