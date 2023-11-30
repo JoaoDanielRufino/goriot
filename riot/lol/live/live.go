@@ -70,5 +70,4 @@ func (c *LiveClientData) get(endpoint string, target interface{}) error {
 	}
 
 	return nil
-
 }
