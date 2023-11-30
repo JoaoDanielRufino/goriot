@@ -1,4 +1,4 @@
-package internal
+package request
 
 import (
 	"crypto/tls"
@@ -8,8 +8,6 @@ import (
 	"io"
 	"net/http"
 )
-
-const riotHeaderApiKey = "X-Riot-Token"
 
 type HttpClient struct {
 	client  *http.Client

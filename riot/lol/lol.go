@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/JoaoDanielRufino/goriot/internal"
+	"github.com/JoaoDanielRufino/goriot/internal/request"
 	"github.com/JoaoDanielRufino/goriot/riot"
 	"github.com/JoaoDanielRufino/goriot/riot/lol/live"
 )
@@ -13,7 +13,7 @@ type LoL struct {
 	LiveClientData *live.LiveClientData
 	apiKey         string
 	region         string
-	httpClient     *internal.HttpClient
+	httpClient     *request.HttpClient
 }
 
 type Option func(*LoL) error
@@ -39,14 +39,14 @@ func WithCertificate(certificatePath string) Option {
 			return err
 		}
 
-		l.LiveClientData = live.NewLiveClientData(internal.NewSecureHttpClient(riot.LiveClientDataBaseURL, certificate))
+		l.LiveClientData = live.NewLiveClientData(request.NewSecureHttpClient(riot.LiveClientDataBaseURL, certificate))
 		return nil
 	}
 }
 
 func NewClient(options ...Option) (*LoL, error) {
 	lolClient := &LoL{
-		LiveClientData: live.NewLiveClientData(internal.NewInsecureHttpClient(riot.LiveClientDataBaseURL)),
+		LiveClientData: live.NewLiveClientData(request.NewInsecureHttpClient(riot.LiveClientDataBaseURL)),
 		region:         riot.RegionBrasil,
 	}
 
@@ -57,7 +57,7 @@ func NewClient(options ...Option) (*LoL, error) {
 		}
 	}
 
-	lolClient.httpClient = internal.NewDefaultHttpClient(fmt.Sprintf(riot.ApiBaseURL, lolClient.region))
+	lolClient.httpClient = request.NewDefaultHttpClient(fmt.Sprintf(riot.ApiBaseURL, lolClient.region))
 
 	return lolClient, nil
 }
