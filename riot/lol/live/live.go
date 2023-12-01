@@ -2,6 +2,8 @@ package live
 
 import (
 	"encoding/json"
+	"fmt"
+	"net/url"
 
 	"github.com/JoaoDanielRufino/goriot/internal/request"
 )
@@ -44,6 +46,26 @@ func (c *LiveClientData) ActivePlayerRunes() (*FullRunes, error) {
 func (c *LiveClientData) PlayerList() ([]Player, error) {
 	players := []Player{}
 	return players, c.get(playerListEndpoint, &players)
+}
+
+func (c *LiveClientData) PlayerScores(name string) (*Scores, error) {
+	scores := &Scores{}
+	return scores, c.get(fmt.Sprintf(playerScoresEndpoint, url.QueryEscape(name)), scores)
+}
+
+func (c *LiveClientData) PlayerSummonerSpells(name string) (*SummonerSpells, error) {
+	summonerSpells := &SummonerSpells{}
+	return summonerSpells, c.get(fmt.Sprintf(playerSummonerSpellsEndpoint, url.QueryEscape(name)), summonerSpells)
+}
+
+func (c *LiveClientData) PlayerMainRunes(name string) (*PlayerRunes, error) {
+	playerRunes := &PlayerRunes{}
+	return playerRunes, c.get(fmt.Sprintf(playerMainRunesEndpoint, url.QueryEscape(name)), playerRunes)
+}
+
+func (c *LiveClientData) PlayerItems(name string) ([]Item, error) {
+	items := []Item{}
+	return items, c.get(fmt.Sprintf(playerItemsEndpoint, url.QueryEscape(name)), &items)
 }
 
 func (c *LiveClientData) EventData() (*Events, error) {
