@@ -1,6 +1,7 @@
 package lol
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -60,4 +61,20 @@ func NewClient(options ...Option) (*LoL, error) {
 	lolClient.httpClient = request.NewDefaultHttpClient(fmt.Sprintf(riot.ApiBaseURL, lolClient.region))
 
 	return lolClient, nil
+}
+
+func (l *LoL) get(endpoint string, target interface{}) error {
+	resp, err := l.httpClient.Do(request.GET, endpoint, nil, request.WithApiKey(l.apiKey))
+	if err != nil {
+		return err
+	}
+
+	defer resp.Body.Close()
+
+	err = json.NewDecoder(resp.Body).Decode(target)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
