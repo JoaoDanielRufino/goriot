@@ -1,9 +1,6 @@
 package riot
 
 const (
-	LiveClientDataBaseURL = "https://127.0.0.1:2999/liveclientdata"
-	ApiBaseURL            = "https://%s.api.riotgames.com"
-
 	RegionBrasil            = "br1"
 	RegionEuropeNorthEast   = "eun1"
 	RegionEuropeWest        = "euw1"
