@@ -11,9 +11,9 @@ import (
 
 type LoL struct {
 	LiveClientData *live.LiveClientData
+	httpClient     *request.HttpClient
 	apiKey         string
 	region         string
-	httpClient     *request.HttpClient
 }
 
 type Option func(*LoL) error
