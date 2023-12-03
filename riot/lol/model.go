@@ -7,11 +7,9 @@ type MiniSeries struct {
 	Wins     uint
 }
 
-type LeagueEntry struct {
-	LeagueId     string
+type LeagueItem struct {
+	SummonerName string
 	SummonerId   string
-	QueueType    string
-	Tier         string
 	Rank         string
 	LeaguePoints int
 	Wins         uint
@@ -21,6 +19,21 @@ type LeagueEntry struct {
 	FreshBlood   bool
 	Inactive     bool
 	MiniSeries   *MiniSeries `json:",omitempty"`
+}
+
+type LeagueEntry struct {
+	LeagueItem
+	LeagueId  string
+	QueueType string
+	Tier      string
+}
+
+type LeagueList struct {
+	LeagueId string
+	Tier     string
+	Name     string
+	Queue    string
+	Entries  []LeagueItem
 }
 
 type Summoner struct {
