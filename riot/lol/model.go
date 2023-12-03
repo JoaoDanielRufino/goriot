@@ -1,5 +1,18 @@
 package lol
 
+type ChampionMastery struct {
+	Puuid                        string
+	ChampionPointsUntilNextLevel uint
+	ChestGranted                 bool
+	ChampionId                   uint
+	LastPlayTime                 uint64
+	ChampionLevel                uint
+	SummonerId                   string
+	ChampionPoints               uint
+	ChampionPointsSinceLastLevel uint
+	TokensEarned                 uint
+}
+
 type MiniSeries struct {
 	Losses   uint
 	Progress string

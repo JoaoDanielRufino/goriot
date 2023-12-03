@@ -5,6 +5,16 @@ const (
 
 	lolBaseEndpoint = "/lol"
 
+	championMasteryBaseEndpoint                      = lolBaseEndpoint + "/champion-mastery/v4"
+	championMasteryByPuuidEndpoint                   = championMasteryBaseEndpoint + "/champion-masteries/by-puuid/%s"
+	championMasteryByPuuidAndChampionIdEndpoint      = championMasteryBaseEndpoint + "/champion-masteries/by-puuid/%s/by-champion/%s"
+	championMasteryByPuuidTopEndpoint                = championMasteryBaseEndpoint + "/champion-masteries/by-puuid/%s/top"
+	championMasteryBySummonerIdEndpoint              = championMasteryBaseEndpoint + "/champion-masteries/by-summoner/%s"
+	championMasteryBySummonerIdAndChampionIdEndpoint = championMasteryBaseEndpoint + "/champion-masteries/by-summoner/%s/by-champion/%s"
+	championMasteryBySummonerIdTopEndpoint           = championMasteryBaseEndpoint + "/champion-masteries/by-summoner/%s/top"
+	championMasteryScoresByPuuidEndpoint             = championMasteryBaseEndpoint + "/scores/by-puuid/%s"
+	championMasteryScoresBySummonerIdEndpoint        = championMasteryBaseEndpoint + "/scores/by-summoner/%s"
+
 	leagueBaseEndpoint               = lolBaseEndpoint + "/league/v4"
 	leagueChallengerByQueueEndpoint  = leagueBaseEndpoint + "/challengerleagues/by-queue/%s"
 	leagueGrandMasterByQueueEndpoint = leagueBaseEndpoint + "/grandmasterleagues/by-queue/%s"
