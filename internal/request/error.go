@@ -8,5 +8,5 @@ type RequestError struct {
 }
 
 func (e RequestError) Error() string {
-	return fmt.Sprintf("Error: %s with code %d", e.Message, e.StatusCode)
+	return fmt.Sprintf("Error %d: %s", e.StatusCode, e.Message)
 }
