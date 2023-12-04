@@ -49,7 +49,7 @@ func WithCertificate(certificatePath string) Option {
 func NewClient(options ...Option) (*LoL, error) {
 	lolClient := &LoL{
 		LiveClientData: live.NewLiveClientData(request.NewInsecureHttpClient(liveClientDataBaseURL)),
-		region:         riot.RegionBrasil,
+		region:         riot.RegionBrazil,
 	}
 
 	for _, opt := range options {

@@ -1,7 +1,7 @@
 package riot
 
 const (
-	RegionBrasil            = "br1"
+	RegionBrazil            = "br1"
 	RegionEuropeNorthEast   = "eun1"
 	RegionEuropeWest        = "euw1"
 	RegionJapan             = "jp1"
