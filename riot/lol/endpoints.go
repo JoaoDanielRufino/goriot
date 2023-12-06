@@ -1,8 +1,6 @@
 package lol
 
 const (
-	liveClientDataBaseURL = "https://127.0.0.1:2999/liveclientdata"
-
 	lolBaseEndpoint = "/lol"
 
 	championMasteryBaseEndpoint                      = lolBaseEndpoint + "/champion-mastery/v4"

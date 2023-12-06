@@ -8,11 +8,13 @@ import (
 	"github.com/JoaoDanielRufino/goriot/internal"
 	"github.com/JoaoDanielRufino/goriot/internal/request"
 	"github.com/JoaoDanielRufino/goriot/riot"
+	"github.com/JoaoDanielRufino/goriot/riot/lol/datadragon"
 	"github.com/JoaoDanielRufino/goriot/riot/lol/live"
 )
 
 type LoL struct {
 	LiveClientData *live.LiveClientData
+	DataDragon     *datadragon.DataDragon
 	httpClient     *request.HttpClient
 	apiKey         string
 	region         string
@@ -41,25 +43,31 @@ func WithCertificate(certificatePath string) Option {
 			return err
 		}
 
-		l.LiveClientData = live.NewLiveClientData(request.NewSecureHttpClient(liveClientDataBaseURL, certificate))
+		l.LiveClientData = live.NewLiveClientData(request.NewSecureHttpClient(live.BaseURL, certificate))
 		return nil
 	}
 }
 
 func NewClient(options ...Option) (*LoL, error) {
 	lolClient := &LoL{
-		LiveClientData: live.NewLiveClientData(request.NewInsecureHttpClient(liveClientDataBaseURL)),
+		LiveClientData: live.NewLiveClientData(request.NewInsecureHttpClient(live.BaseURL)),
 		region:         riot.RegionBrazil,
 	}
 
 	for _, opt := range options {
-		err := opt(lolClient)
-		if err != nil {
+		if err := opt(lolClient); err != nil {
 			return nil, err
 		}
 	}
 
 	lolClient.httpClient = request.NewDefaultHttpClient(fmt.Sprintf(internal.ApiBaseURL, lolClient.region))
+
+	dataDragonClient, err := datadragon.NewDataDragon(lolClient.region, request.NewDefaultHttpClient(datadragon.BaseURL))
+	if err != nil {
+		return nil, err
+	}
+
+	lolClient.DataDragon = dataDragonClient
 
 	return lolClient, nil
 }

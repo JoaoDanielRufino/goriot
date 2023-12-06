@@ -1,6 +1,8 @@
 package live
 
 const (
+	BaseURL = "https://127.0.0.1:2999/liveclientdata"
+
 	allGameDataEndpoint           = "/allgamedata"
 	activePlayerEndpoint          = "/activeplayer"
 	activePlayerNameEndpoint      = "/activeplayername"
