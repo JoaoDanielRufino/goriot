@@ -10,7 +10,6 @@ import (
 type DataDragon struct {
 	version    string
 	language   string
-	cdn        string
 	httpClient *request.HttpClient
 }
 
@@ -30,11 +29,25 @@ func NewDataDragon(region string, httpClient *request.HttpClient) (*DataDragon, 
 	return datadragon, nil
 }
 
+func (d *DataDragon) GetChampions() ([]Champion, error) {
+	var res DataDragonResponse[Champion]
+
+	if err := d.get(fmt.Sprintf(dataChampionsEndpoint, d.version, d.language), &res); err != nil {
+		return nil, err
+	}
+
+	champions := make([]Champion, 0, len(res.Data))
+	for _, champion := range res.Data {
+		champions = append(champions, champion)
+	}
+
+	return champions, nil
+}
+
 func (d *DataDragon) init(realm string) error {
 	var body struct {
-		V   string
-		L   string
-		Cnd string
+		V string
+		L string
 	}
 
 	if err := d.get(fmt.Sprintf(realmEndpoint, realm), &body); err != nil {
@@ -43,7 +56,6 @@ func (d *DataDragon) init(realm string) error {
 
 	d.version = body.V
 	d.language = body.L
-	d.cdn = body.Cnd
 
 	return nil
 }

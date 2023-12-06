@@ -5,7 +5,10 @@ import "github.com/JoaoDanielRufino/goriot/riot"
 const (
 	BaseURL = "https://ddragon.leagueoflegends.com"
 
-	realmEndpoint = "/realms/%s.json"
+	realmEndpoint         = "/realms/%s.json"
+	dataBaseEndpoint      = "/cdn/%s/data/%s"
+	dataChampionsEndpoint = dataBaseEndpoint + "/champion.json"
+	dataChampionEndpoint  = dataBaseEndpoint + "/champion/%s.json"
 )
 
 var (
