@@ -10,10 +10,10 @@ import (
 type DataDragon struct {
 	version    string
 	language   string
-	httpClient *request.HttpClient
+	httpClient request.Requester
 }
 
-func NewDataDragon(region string, httpClient *request.HttpClient) (*DataDragon, error) {
+func NewDataDragon(region string, httpClient request.Requester) (*DataDragon, error) {
 	if _, ok := regionToRealm[region]; !ok {
 		return nil, fmt.Errorf("failed to find a realm for the region: %s", region)
 	}

@@ -15,7 +15,7 @@ import (
 type LoL struct {
 	LiveClientData *live.LiveClientData
 	DataDragon     *datadragon.DataDragon
-	httpClient     *request.HttpClient
+	httpClient     request.Requester
 	apiKey         string
 	region         string
 }
