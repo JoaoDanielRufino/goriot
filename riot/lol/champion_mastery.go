@@ -12,7 +12,7 @@ func WithCount(count uint) ParamsOptions {
 	}
 }
 
-func (l *LoL) GetChampionMasteryByPuuid(puuid string) ([]ChampionMastery, error) {
+func (l *LoL) GetChampionMasteriesByPuuid(puuid string) ([]ChampionMastery, error) {
 	championMastery := []ChampionMastery{}
 	return championMastery, l.get(fmt.Sprintf(championMasteryByPuuidEndpoint, puuid), &championMastery)
 }
@@ -22,7 +22,7 @@ func (l *LoL) GetChampionMasteryByPuuidAndChampionId(puuid, championId string) (
 	return championMastery, l.get(fmt.Sprintf(championMasteryByPuuidAndChampionIdEndpoint, puuid, championId), &championMastery)
 }
 
-func (l *LoL) GetTopChampionMasteryByPuuid(puuid string, options ...ParamsOptions) ([]ChampionMastery, error) {
+func (l *LoL) GetTopChampionMasteriesByPuuid(puuid string, options ...ParamsOptions) ([]ChampionMastery, error) {
 	championMastery := []ChampionMastery{}
 
 	endpoint := fmt.Sprintf(championMasteryByPuuidTopEndpoint, puuid)
@@ -34,7 +34,7 @@ func (l *LoL) GetTopChampionMasteryByPuuid(puuid string, options ...ParamsOption
 	return championMastery, l.get(endpoint, &championMastery)
 }
 
-func (l *LoL) GetChampionMasteryBySummonerId(summonerId string) ([]ChampionMastery, error) {
+func (l *LoL) GetChampionMasteriesBySummonerId(summonerId string) ([]ChampionMastery, error) {
 	championMastery := []ChampionMastery{}
 	return championMastery, l.get(fmt.Sprintf(championMasteryBySummonerIdEndpoint, summonerId), &championMastery)
 }
@@ -44,7 +44,7 @@ func (l *LoL) GetChampionMasteryBySummonerIdAndChampionId(summonerId, championId
 	return championMastery, l.get(fmt.Sprintf(championMasteryBySummonerIdAndChampionIdEndpoint, summonerId, championId), &championMastery)
 }
 
-func (l *LoL) GetTopChampionMasteryBySummonerId(summonerId string, options ...ParamsOptions) ([]ChampionMastery, error) {
+func (l *LoL) GetTopChampionMasteriesBySummonerId(summonerId string, options ...ParamsOptions) ([]ChampionMastery, error) {
 	championMastery := []ChampionMastery{}
 
 	endpoint := fmt.Sprintf(championMasteryBySummonerIdTopEndpoint, summonerId)
