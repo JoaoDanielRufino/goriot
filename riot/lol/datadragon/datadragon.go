@@ -7,6 +7,8 @@ import (
 	"github.com/JoaoDanielRufino/goriot/internal/request"
 )
 
+var regionToRealmException = "failed to find a realm for the region: %s"
+
 type DataDragon struct {
 	version    string
 	language   string
@@ -15,7 +17,7 @@ type DataDragon struct {
 
 func NewDataDragon(region string, httpClient request.Requester) (*DataDragon, error) {
 	if _, ok := regionToRealm[region]; !ok {
-		return nil, fmt.Errorf("failed to find a realm for the region: %s", region)
+		return nil, fmt.Errorf(regionToRealmException, region)
 	}
 
 	datadragon := &DataDragon{

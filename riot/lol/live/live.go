@@ -9,10 +9,10 @@ import (
 )
 
 type LiveClientData struct {
-	httpClient *request.HttpClient
+	httpClient request.Requester
 }
 
-func NewLiveClientData(httpClient *request.HttpClient) *LiveClientData {
+func NewLiveClientData(httpClient request.Requester) *LiveClientData {
 	return &LiveClientData{
 		httpClient: httpClient,
 	}
