@@ -9,6 +9,8 @@ import (
 	"net/http"
 )
 
+const genericErrorMessage = "Error: %s"
+
 type HttpClient struct {
 	client  *http.Client
 	baseURL string
@@ -105,7 +107,7 @@ func (c *HttpClient) handleErrorStatusCode(res *http.Response) error {
 
 	err := d.Decode(&body)
 	if err != nil {
-		return fmt.Errorf("Error: %s", res.Status)
+		return fmt.Errorf(genericErrorMessage, res.Status)
 	}
 
 	return RequestError{
