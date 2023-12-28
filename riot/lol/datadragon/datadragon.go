@@ -7,7 +7,7 @@ import (
 	"github.com/JoaoDanielRufino/goriot/internal/request"
 )
 
-var regionToRealmException = "failed to find a realm for the region: %s"
+const regionToRealmException = "failed to find a realm for the region: %s"
 
 type DataDragon struct {
 	version    string

@@ -69,7 +69,7 @@ func TestNewDataDragon(t *testing.T) {
 func TestGetChampions(t *testing.T) {
 	dataDragonResponse := DataDragonResponse[Champion]{
 		Data: map[string]Champion{
-			"Vladimir": Champion{},
+			"Vladimir": {},
 		},
 	}
 
@@ -85,7 +85,7 @@ func TestGetChampions(t *testing.T) {
 				version:  "VERSION",
 				language: "LANGUAGE",
 			},
-			want: []Champion{Champion{}},
+			want: []Champion{{}},
 			err:  nil,
 		},
 		{
